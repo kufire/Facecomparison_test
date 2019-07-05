@@ -1,0 +1,946 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "认证中心接口文档",
+		"version": "1.0",
+		"title": "认证中心",
+		"contact": {},
+		"license": {}
+	},
+	"host": "192.168.22.105:10086",
+	"basePath": "/api-auth",
+	"tags": [{
+		"name": "OAuth2操作",
+		"description": "Oauth Controller"
+	}, {
+		"name": "redis操作",
+		"description": "Redis Controller"
+	}, {
+		"name": "授权应用",
+		"description": "Client Controller"
+	}, {
+		"name": "服务模块api",
+		"description": "Oauther Server Controller"
+	}, {
+		"name": "系统登录",
+		"description": "Login Controller"
+	}],
+	"paths": {
+		"/clients": {
+			"get": {
+				"tags": ["授权应用"],
+				"summary": "应用列表",
+				"operationId": "listRolesUsingGET",
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "params",
+					"in": "query",
+					"description": "params",
+					"required": true,
+					"type": "object"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/OauthClientDetails"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			},
+			"post": {
+				"tags": ["授权应用"],
+				"summary": "保存应用",
+				"operationId": "saveRoleUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "clientDTO",
+					"description": "clientDTO",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/ClientDTO"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/clients/all": {
+			"get": {
+				"tags": ["授权应用"],
+				"summary": "所有应用",
+				"operationId": "rolesUsingGET",
+				"produces": ["*/*"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/OauthClientDetails"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/clients/saveOrUpdate": {
+			"post": {
+				"tags": ["授权应用"],
+				"summary": "保存或者修改应用",
+				"operationId": "saveOrUpdateUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "clientDto",
+					"description": "clientDto",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/ClientDTO"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Result"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/clients/{id}": {
+			"get": {
+				"tags": ["授权应用"],
+				"summary": "根据id获取应用",
+				"operationId": "getUsingGET",
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "id",
+					"required": true,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/OauthClientDetails"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			},
+			"delete": {
+				"tags": ["授权应用"],
+				"summary": "删除应用",
+				"operationId": "deleteUsingDELETE",
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "id",
+					"required": true,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/oauth/get/token": {
+			"post": {
+				"tags": ["OAuth2操作"],
+				"summary": "获取token信息",
+				"operationId": "getTokenInfoUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "access_token",
+					"in": "query",
+					"description": "access_token",
+					"required": true,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/OAuth2AccessToken"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/oauth/refresh/token": {
+			"post": {
+				"tags": ["OAuth2操作"],
+				"summary": "access_token刷新token",
+				"operationId": "refreshTokenInfoUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "access_token",
+					"in": "query",
+					"description": "access_token",
+					"required": true,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/oauth/remove/token": {
+			"post": {
+				"tags": ["OAuth2操作"],
+				"summary": "移除token",
+				"operationId": "removeTokenUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "access_token",
+					"in": "query",
+					"description": "access_token",
+					"required": true,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/oauth/token/list": {
+			"get": {
+				"tags": ["OAuth2操作"],
+				"summary": "当前token列表",
+				"description": "当前登录列表",
+				"operationId": "getUserTokenInfoUsingGET",
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "count",
+					"in": "query",
+					"required": false,
+					"type": "boolean"
+				}, {
+					"name": "pageId",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}, {
+					"name": "pageSize",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/PageResult"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/oauth/userinfo": {
+			"get": {
+				"tags": ["OAuth2操作"],
+				"summary": "当前登陆用户信息",
+				"operationId": "getCurrentUserDetailUsingGET",
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/redis/keysSize": {
+			"get": {
+				"tags": ["redis操作"],
+				"summary": "getKeysSize",
+				"operationId": "getKeysSizeUsingGET",
+				"produces": ["*/*"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/redis/memoryInfo": {
+			"get": {
+				"tags": ["redis操作"],
+				"summary": "getMemoryInfo",
+				"operationId": "getMemoryInfoUsingGET",
+				"produces": ["*/*"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/services/findAlls": {
+			"get": {
+				"tags": ["服务模块api"],
+				"summary": "查询所有服务",
+				"operationId": "findAllsUsingGET",
+				"produces": ["*/*"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/PageResult"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/validata/code": {
+			"get": {
+				"tags": ["系统登录"],
+				"summary": "WEB端验证码",
+				"description": "WEB端验证码",
+				"operationId": "validataCodeUsingGET",
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "deviceId",
+					"in": "query",
+					"description": "唯一标识(手机号,关联号,或者其他的)",
+					"required": true,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/web/login": {
+			"post": {
+				"tags": ["系统登录"],
+				"summary": "WEB端登录接口",
+				"description": "WEB端登录接口",
+				"operationId": "loginUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "vo",
+					"description": "vo",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/LoginVO"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/PageResult«OAuth2AccessToken»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		},
+		"/web/logout": {
+			"post": {
+				"tags": ["系统登录"],
+				"summary": "WEB端注销接口",
+				"description": "WEB端注销接口",
+				"operationId": "logoutUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/PageResult«OAuth2AccessToken»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"security": [{
+					"Authorization": ["gloabl"]
+				}],
+				"deprecated": false
+			}
+		}
+	},
+	"securityDefinitions": {
+		"Authorization": {
+			"type": "apiKey",
+			"name": "Authorization",
+			"in": "header"
+		}
+	},
+	"definitions": {
+		"ClientDTO": {
+			"type": "object",
+			"properties": {
+				"accessTokenValidity": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"additionalInformation": {
+					"type": "string"
+				},
+				"authorities": {
+					"type": "string"
+				},
+				"authorizedGrantTypes": {
+					"type": "string"
+				},
+				"autoapprove": {
+					"type": "string"
+				},
+				"clientId": {
+					"type": "string"
+				},
+				"clientSecret": {
+					"type": "string"
+				},
+				"clientSecretStr": {
+					"type": "string"
+				},
+				"createDepartment": {
+					"type": "string"
+				},
+				"createServerHost": {
+					"type": "string"
+				},
+				"createTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"createUser": {
+					"type": "string"
+				},
+				"isDelete": {
+					"type": "boolean"
+				},
+				"oauthClientDetailsId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"permissionIds": {
+					"type": "array",
+					"items": {
+						"type": "integer",
+						"format": "int64"
+					}
+				},
+				"recordVersion": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"refreshTokenValidity": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"resourceIds": {
+					"type": "string"
+				},
+				"scope": {
+					"type": "string"
+				},
+				"serviceIds": {
+					"type": "array",
+					"items": {
+						"type": "integer",
+						"format": "int64"
+					}
+				},
+				"updateDepartment": {
+					"type": "string"
+				},
+				"updateServerHost": {
+					"type": "string"
+				},
+				"updateTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"updateUser": {
+					"type": "string"
+				},
+				"webServerRedirectUri": {
+					"type": "string"
+				}
+			},
+			"title": "ClientDTO"
+		},
+		"LoginVO": {
+			"type": "object",
+			"required": ["password", "username"],
+			"properties": {
+				"deviceId": {
+					"type": "string",
+					"description": "机器码"
+				},
+				"password": {
+					"type": "string",
+					"description": "密码",
+					"enum": ["123456"]
+				},
+				"username": {
+					"type": "string",
+					"description": "用户名",
+					"enum": ["admin"]
+				},
+				"verificationCode": {
+					"type": "string",
+					"description": "验证码"
+				}
+			},
+			"title": "LoginVO"
+		},
+		"OAuth2AccessToken": {
+			"type": "object",
+			"properties": {
+				"additionalInformation": {
+					"type": "object"
+				},
+				"expiration": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"expired": {
+					"type": "boolean"
+				},
+				"expiresIn": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"refreshToken": {
+					"$ref": "#/definitions/OAuth2RefreshToken"
+				},
+				"scope": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"tokenType": {
+					"type": "string"
+				},
+				"value": {
+					"type": "string"
+				}
+			},
+			"title": "OAuth2AccessToken"
+		},
+		"OAuth2RefreshToken": {
+			"type": "object",
+			"properties": {
+				"value": {
+					"type": "string"
+				}
+			},
+			"title": "OAuth2RefreshToken"
+		},
+		"OauthClientDetails": {
+			"type": "object",
+			"properties": {
+				"accessTokenValidity": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"additionalInformation": {
+					"type": "string"
+				},
+				"authorities": {
+					"type": "string"
+				},
+				"authorizedGrantTypes": {
+					"type": "string"
+				},
+				"autoapprove": {
+					"type": "string"
+				},
+				"clientId": {
+					"type": "string"
+				},
+				"clientSecret": {
+					"type": "string"
+				},
+				"clientSecretStr": {
+					"type": "string"
+				},
+				"createDepartment": {
+					"type": "string"
+				},
+				"createServerHost": {
+					"type": "string"
+				},
+				"createTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"createUser": {
+					"type": "string"
+				},
+				"isDelete": {
+					"type": "boolean"
+				},
+				"oauthClientDetailsId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"recordVersion": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"refreshTokenValidity": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"resourceIds": {
+					"type": "string"
+				},
+				"scope": {
+					"type": "string"
+				},
+				"updateDepartment": {
+					"type": "string"
+				},
+				"updateServerHost": {
+					"type": "string"
+				},
+				"updateTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"updateUser": {
+					"type": "string"
+				},
+				"webServerRedirectUri": {
+					"type": "string"
+				}
+			},
+			"title": "OauthClientDetails"
+		},
+		"PageResult": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"message": {
+					"type": "string"
+				},
+				"result": {
+					"type": "object"
+				},
+				"success": {
+					"type": "boolean"
+				}
+			},
+			"title": "PageResult"
+		},
+		"PageResult«OAuth2AccessToken»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"message": {
+					"type": "string"
+				},
+				"result": {
+					"$ref": "#/definitions/OAuth2AccessToken"
+				},
+				"success": {
+					"type": "boolean"
+				}
+			},
+			"title": "PageResult«OAuth2AccessToken»"
+		},
+		"Result": {
+			"type": "object",
+			"properties": {
+				"datas": {
+					"type": "object"
+				},
+				"respCode": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"respMsg": {
+					"type": "string"
+				}
+			},
+			"title": "Result"
+		}
+	}
+}

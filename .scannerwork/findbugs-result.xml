@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.1.11" sequence="0" timestamp="1562309813577" analysisTimestamp="1562310121235" release="">
+  <Project>
+    <Jar>D:\WorkSpace\java\Facecomparison\target\classes\com\ropeok\Api.class</Jar>
+    <Jar>D:\WorkSpace\java\Facecomparison\target\classes\com\ropeok\App.class</Jar>
+    <Jar>D:\WorkSpace\java\Facecomparison\target\classes\com\ropeok\Facecomparison.class</Jar>
+    <Jar>D:\WorkSpace\java\Facecomparison\target\classes\com\ropeok\FacecomparisonConfig.class</Jar>
+    <Jar>D:\WorkSpace\java\Facecomparison\target\classes\com\ropeok\Restful.class</Jar>
+    <Jar>D:\WorkSpace\java\Facecomparison\target\classes\com\ropeok\auth\Login.class</Jar>
+    <AuxClasspathEntry>D:\WorkSpace\java\Facecomparison\target\classes</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\WorkSpace\java\Facecomparison\.scannerwork\findbugs\annotations.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\WorkSpace\java\Facecomparison\.scannerwork\findbugs\jsr305.jar</AuxClasspathEntry>
+    <WrkDir>D:\WorkSpace\java\Facecomparison\.scannerwork</WrkDir>
+  </Project>
+  <Errors errors="0" missingClasses="28">
+    <MissingClass>accept</MissingClass>
+    <MissingClass>com.fasterxml.jackson.databind.ObjectMapper</MissingClass>
+    <MissingClass>com.fasterxml.jackson.dataformat.yaml.YAMLFactory</MissingClass>
+    <MissingClass>com.jayway.jsonpath.DocumentContext</MissingClass>
+    <MissingClass>com.jayway.jsonpath.JsonPath</MissingClass>
+    <MissingClass>de.sstoehr.harreader.HarReader</MissingClass>
+    <MissingClass>de.sstoehr.harreader.HarReaderException</MissingClass>
+    <MissingClass>de.sstoehr.harreader.model.Har</MissingClass>
+    <MissingClass>de.sstoehr.harreader.model.HarEntry</MissingClass>
+    <MissingClass>de.sstoehr.harreader.model.HarLog</MissingClass>
+    <MissingClass>de.sstoehr.harreader.model.HarPostData</MissingClass>
+    <MissingClass>de.sstoehr.harreader.model.HarQueryParam</MissingClass>
+    <MissingClass>de.sstoehr.harreader.model.HarRequest</MissingClass>
+    <MissingClass>de.sstoehr.harreader.model.HttpMethod</MissingClass>
+    <MissingClass>filter</MissingClass>
+    <MissingClass>io.restassured.RestAssured</MissingClass>
+    <MissingClass>io.restassured.filter.FilterContext</MissingClass>
+    <MissingClass>io.restassured.http.ContentType</MissingClass>
+    <MissingClass>io.restassured.response.ExtractableResponse</MissingClass>
+    <MissingClass>io.restassured.response.Response</MissingClass>
+    <MissingClass>io.restassured.response.ValidatableResponse</MissingClass>
+    <MissingClass>io.restassured.response.ValidatableResponseLogSpec</MissingClass>
+    <MissingClass>io.restassured.specification.RequestLogSpecification</MissingClass>
+    <MissingClass>io.restassured.specification.RequestSpecification</MissingClass>
+    <MissingClass>org.apache.log4j.Logger</MissingClass>
+    <MissingClass>org.json.JSONArray</MissingClass>
+    <MissingClass>org.json.JSONObject</MissingClass>
+    <MissingClass>redis.clients.jedis.Jedis</MissingClass>
+  </Errors>
+  <FindBugsSummary timestamp="Fri, 5 Jul 2019 14:56:53 +0800" total_classes="6" referenced_classes="49" total_bugs="0" total_size="269" num_packages="2" java_version="11.0.3" vm_version="11.0.3+7" cpu_seconds="12.07" clock_seconds="2.66" peak_mbytes="346.65" alloc_mbytes="4068.00" gc_seconds="0.05">
+    <FileStats path="com/ropeok/Api.java" bugCount="0" size="198"/>
+    <FileStats path="com/ropeok/App.java" bugCount="0" size="11"/>
+    <FileStats path="com/ropeok/Facecomparison.java" bugCount="0" size="15"/>
+    <FileStats path="com/ropeok/FacecomparisonConfig.java" bugCount="0" size="24"/>
+    <FileStats path="com/ropeok/Restful.java" bugCount="0" size="10"/>
+    <FileStats path="com/ropeok/auth/Login.java" bugCount="0" size="11"/>
+    <PackageStats package="com.ropeok" total_bugs="0" total_types="5" total_size="258">
+      <ClassStats class="com.ropeok.Api" sourceFile="Api.java" interface="false" size="198" bugs="0"/>
+      <ClassStats class="com.ropeok.App" sourceFile="App.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="com.ropeok.Facecomparison" sourceFile="Facecomparison.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="com.ropeok.FacecomparisonConfig" sourceFile="FacecomparisonConfig.java" interface="false" size="24" bugs="0"/>
+      <ClassStats class="com.ropeok.Restful" sourceFile="Restful.java" interface="false" size="10" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.ropeok.auth" total_bugs="0" total_types="1" total_size="11">
+      <ClassStats class="com.ropeok.auth.Login" sourceFile="Login.java" interface="false" size="11" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="360" invocations="642" avgMicrosecondsPerInvocation="562" maxMicrosecondsPerInvocation="20943" standardDeviationMicrosecondsPerInvocation="1408"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="110" invocations="49" avgMicrosecondsPerInvocation="2245" maxMicrosecondsPerInvocation="13126" standardDeviationMicrosecondsPerInvocation="2944"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="108" invocations="648" avgMicrosecondsPerInvocation="166" maxMicrosecondsPerInvocation="3810" standardDeviationMicrosecondsPerInvocation="175"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="84" invocations="197" avgMicrosecondsPerInvocation="431" maxMicrosecondsPerInvocation="3066" standardDeviationMicrosecondsPerInvocation="491"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="75" invocations="44" avgMicrosecondsPerInvocation="1719" maxMicrosecondsPerInvocation="15401" standardDeviationMicrosecondsPerInvocation="3078"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="72" invocations="49" avgMicrosecondsPerInvocation="1484" maxMicrosecondsPerInvocation="7788" standardDeviationMicrosecondsPerInvocation="1839"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="70" invocations="6" avgMicrosecondsPerInvocation="11760" maxMicrosecondsPerInvocation="70431" standardDeviationMicrosecondsPerInvocation="26238"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.taintanalysis.TaintDataflowEngine" totalMilliseconds="63" invocations="40" avgMicrosecondsPerInvocation="1581" maxMicrosecondsPerInvocation="19592" standardDeviationMicrosecondsPerInvocation="3719"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="58" invocations="40" avgMicrosecondsPerInvocation="1457" maxMicrosecondsPerInvocation="12907" standardDeviationMicrosecondsPerInvocation="2691"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="47" invocations="44" avgMicrosecondsPerInvocation="1077" maxMicrosecondsPerInvocation="9183" standardDeviationMicrosecondsPerInvocation="2019"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="43" invocations="40" avgMicrosecondsPerInvocation="1091" maxMicrosecondsPerInvocation="9091" standardDeviationMicrosecondsPerInvocation="1977"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="40" invocations="40" avgMicrosecondsPerInvocation="1007" maxMicrosecondsPerInvocation="32777" standardDeviationMicrosecondsPerInvocation="5091"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="36" invocations="572" avgMicrosecondsPerInvocation="63" maxMicrosecondsPerInvocation="1139" standardDeviationMicrosecondsPerInvocation="110"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="36" invocations="130" avgMicrosecondsPerInvocation="277" maxMicrosecondsPerInvocation="14655" standardDeviationMicrosecondsPerInvocation="1326"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="33" invocations="40" avgMicrosecondsPerInvocation="849" maxMicrosecondsPerInvocation="10125" standardDeviationMicrosecondsPerInvocation="1710"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="33" invocations="49" avgMicrosecondsPerInvocation="678" maxMicrosecondsPerInvocation="5040" standardDeviationMicrosecondsPerInvocation="959"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="30" invocations="40" avgMicrosecondsPerInvocation="773" maxMicrosecondsPerInvocation="4470" standardDeviationMicrosecondsPerInvocation="1055"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="30" invocations="49" avgMicrosecondsPerInvocation="617" maxMicrosecondsPerInvocation="4093" standardDeviationMicrosecondsPerInvocation="878"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.EqualsOperandShouldHaveClassCompatibleWithThis" totalMilliseconds="29" invocations="49" avgMicrosecondsPerInvocation="592" maxMicrosecondsPerInvocation="19670" standardDeviationMicrosecondsPerInvocation="2764"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="27" invocations="38" avgMicrosecondsPerInvocation="713" maxMicrosecondsPerInvocation="9218" standardDeviationMicrosecondsPerInvocation="1610"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildStringPassthruGraph" totalMilliseconds="24" invocations="49" avgMicrosecondsPerInvocation="506" maxMicrosecondsPerInvocation="3580" standardDeviationMicrosecondsPerInvocation="726"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="21" invocations="49" avgMicrosecondsPerInvocation="442" maxMicrosecondsPerInvocation="2209" standardDeviationMicrosecondsPerInvocation="538"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="21" invocations="49" avgMicrosecondsPerInvocation="441" maxMicrosecondsPerInvocation="7016" standardDeviationMicrosecondsPerInvocation="1048"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="21" invocations="49" avgMicrosecondsPerInvocation="440" maxMicrosecondsPerInvocation="3531" standardDeviationMicrosecondsPerInvocation="662"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ExplicitSerialization" totalMilliseconds="17" invocations="49" avgMicrosecondsPerInvocation="348" maxMicrosecondsPerInvocation="5340" standardDeviationMicrosecondsPerInvocation="1081"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ReflectiveClasses" totalMilliseconds="13" invocations="49" avgMicrosecondsPerInvocation="279" maxMicrosecondsPerInvocation="1397" standardDeviationMicrosecondsPerInvocation="360"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.obl.ObligationAnalysis" totalMilliseconds="12" invocations="29" avgMicrosecondsPerInvocation="433" maxMicrosecondsPerInvocation="2268" standardDeviationMicrosecondsPerInvocation="587"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

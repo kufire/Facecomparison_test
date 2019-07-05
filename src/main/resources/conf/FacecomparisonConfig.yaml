@@ -1,0 +1,15 @@
+---
+# 应用
+account: "admin"
+password: "123456"
+current: test
+env:
+  dev:
+    "192.168.22.105:10086": "tujian.com"
+  test:
+    "192.168.22.105:10086": "192.168.22.105:10086"
+# Mysql
+sql_user: "root"
+sql_password: "ropeok"
+sql_driver: "com.mysql.cj.jdbc.Driver"        #org.postgresql.Driver
+sql_url: "jdbc:mysql://192.168.18.13:3306/wharf_backup?characterEncoding=utf-8&serverTimezone=UTC"   #"jdbc:postgresql://192.168.22.105:3306/wharf_backup?characterEncoding=utf-8&serverTimezone=UTC"
